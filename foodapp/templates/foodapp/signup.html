@@ -1,0 +1,38 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Sign Up</title>
+  <link rel="stylesheet" href="{% static 'foodapp/signup.css' %}">
+</head>
+<body>
+  <div class="signup-container">
+    <h3 class="form-heading">Sign Up Below:</h3>
+
+    <form action="{% url 'signup' %}" method="post" class="signup-form">
+      {% csrf_token %}
+      <label for="username">Username</label>
+      <input type="text" name="username" id="username" required>
+
+      <label for="password">Password</label>
+      <input type="password" name="password" id="password" required>
+
+      <label for="email">Email</label>
+      <input type="email" name="email" id="email" required>
+
+      <label for="mobile">Mobile</label>
+      <input type="text" name="mobile" id="mobile" required>
+
+      <label for="address">Address</label>
+      <textarea name="address" id="address" rows="3" required></textarea>
+
+      <button type="submit" class="submit-btn">Sign Up</button>
+    </form>
+
+    <p class="login-link">
+      Already have an account? <a href="{% url 'open_signin' %}">Login</a>
+    </p>
+  </div>
+</body>
+</html>

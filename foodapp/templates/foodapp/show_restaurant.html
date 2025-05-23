@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <title>Restaurant Details</title>
+    <link rel="stylesheet" href="{% static 'foodapp/style_show_restaurant.css' %}">
+</head>
+<body id="page-body">
+    <h3 class="page-heading">Restaurant</h3>
+    
+    <table class="restaurant-table" border="1">
+        <thead id="table-header">
+            <tr>
+                <th>Restaurant Name</th>
+                <th>Picture</th>
+                <th>Cuisine</th>
+                <th>Rating</th>
+                <th>Operations</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for restaurant in r_list %}
+            <tr class="restaurant-row">
+                <td class="restaurant-name">{{ restaurant.name }}</td>
+                <td class="restaurant-image-cell">
+                    <img src="{{ restaurant.url }}" class="restaurant-image">
+                </td>
+                <td class="restaurant-cuisine">{{ restaurant.cuisine }}</td>
+                <td class="restaurant-rating">{{ restaurant.rating }}</td>
+                <td class="restaurant-operations">
+                    <a href="{% url 'open_update_restaurant' r_id=restaurant.id %}" class="operation-link">Update Restaurant</a><br>
+                    <a href="{% url 'delete_restaurant' r_id=restaurant.id %}" class="operation-link">Delete Restaurant</a><br>
+                    <a href="{% url 'open_update_menu' r_id=restaurant.id %}" class="operation-link">Menu</a>
+                </td>
+            </tr>
+            {% empty %}
+            <tr>
+                <td colspan="5">No restaurants found.</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>

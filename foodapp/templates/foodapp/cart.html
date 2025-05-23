@@ -1,0 +1,46 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cart_List</title>
+    <link rel="stylesheet" href="{% static 'foodapp/show_cart.css' %}">
+</head>
+<body id="cart-page">
+
+    <h3 id="welcome-msg">Welcome {{username}}</h3>
+
+    <table class="cart-table">
+        <thead>
+            <tr>
+                <th>Item Image</th>
+                <th>Name</th>
+                <th>Description</th>
+                <th>Price</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for item in items %}
+            <tr>
+                <td class="cart-image">
+                    <img src="{{ item.picture }}" alt="{{ item.name }}">
+                </td>
+                <td>{{ item.name }}</td>
+                <td>{{ item.description }}</td>
+                <td>{{ item.price }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <div class="cart-summary">
+        <h2>Total Price: ₹{{ total_price }}</h2>
+        <form action="{% url 'checkout' username=username %}" method="post">
+            {% csrf_token %}
+            <input type="submit" value="CHECK OUT" class="checkout-btn" />
+        </form>
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,19 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="stylesheet" href="{% static 'foodapp/header.css' %}">
+  <title>Food Delivery</title>
+</head>
+<body>
+  <nav id="main-nav">
+    <h2 class="logo">Meal_Mate</h2>
+    <div class="nav-links">
+      <a href="#">View Restaurants</a>
+      <a href="#">View Menu</a>
+      <a href="{% url 'open_signin' %}">SIGN IN</a>
+      <a href="{% url 'open_signup' %}">SIGN UP</a>
+    </div>
+  </nav>
+</body>
+</html>

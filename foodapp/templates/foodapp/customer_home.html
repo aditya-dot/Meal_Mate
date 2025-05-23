@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Customer Page</title>
+  {% load static %}
+  <link rel="stylesheet" href="{% static 'foodapp/customer.css' %}">
+</head>
+<body>
+  <div class="customer-container">
+    <h3>Welcome, {{ username }}!</h3>
+
+    <table class="restaurant-table">
+      <thead>
+        <tr>
+          <th>Restaurant Name</th>
+          <th>Picture</th>
+          <th>Cuisine</th>
+          <th>Rating</th>
+          <th>Operations</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for restaurant in r_list %}
+        <tr>
+          <td>{{ restaurant.name }}</td>
+          <td><img src="{{ restaurant.url }}" class="restaurant-img"></td>
+          <td>{{ restaurant.cuisine }}</td>
+          <td>{{ restaurant.rating }}</td>
+          <td>
+            <a class="btn-view" href="{% url 'view_menu' r_id=restaurant.id username=username %}">View Menu</a>
+          </td>
+        </tr>
+        {% empty %}
+        <tr>
+          <td colspan="5">No restaurants found.</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</body>
+</html>

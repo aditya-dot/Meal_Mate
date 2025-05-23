@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Admin Page</title>
+  {% load static %}
+  <link rel="stylesheet" href="{% static 'foodapp/admin.css' %}">
+</head>
+<body>
+  <div class="admin-container">
+    <h2>Welcome to Admin Home!</h2>
+
+    <div class="admin-links">
+      <a href="{% url 'open_add_restaurant' %}" class="admin-btn">Add New Restaurant</a>
+      <a href="{% url 'open_show_restaurant' %}" class="admin-btn">Show Restaurant</a>
+    </div>
+  </div>
+</body>
+</html>

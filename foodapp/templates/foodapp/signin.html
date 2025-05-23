@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Sign In</title>
+  {% load static %}
+  <link rel="stylesheet" href="{% static 'foodapp/signin.css' %}">
+</head>
+<body>
+  <div class="signin-container">
+    <h3 class="form-heading">Sign in below:</h3>
+
+    <form action="{% url 'signin' %}" method="post" class="signin-form">
+      {% csrf_token %}
+      <label for="username">Username</label>
+      <input type="text" name="username" id="username" required>
+
+      <label for="password">Password</label>
+      <input type="password" name="password" id="password" required>
+
+      <button type="submit" class="submit-btn">Sign In</button>
+    </form>
+  </div>
+</body>
+</html>

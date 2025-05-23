@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Update_Menu</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'foodapp/update_menu.css' %}">
+</head>
+<body id="page-body">
+
+    <h3 class="page-heading">Update Menu</h3>
+
+    <section class="menu-display">
+        <h3 class="page-heading">Show Current Items</h3>
+        <table class="menu-table">
+            <thead id="table-header">
+                <tr>
+                    <th>Item Name</th>
+                    <th>Picture</th>
+                    <th>Description</th>
+                    <th>Price</th>
+                    <th>Veg / Non Veg</th>
+
+                </tr>
+            </thead>
+            <tbody>
+                {% for menu in itemList %}
+                <tr class="menu-row">
+                    <td>{{ menu.name }}</td>
+                    <td class="image-cell">
+                        <img src="{{ menu.picture }}"class="menu-image">
+                    </td>
+                    <td>{{ menu.description }}</td>
+                    <td>{{ menu.price }}</td>
+                    <td>
+                        {% if menu.vegeterian %}
+                            Veg
+                        {% else %}
+                            Non-Veg
+                        {% endif %}
+                    </td>
+                </tr>
+                {% empty %}
+                <tr>
+                    <td colspan="5">No menu items found.</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </section>
+
+    <section class="menu-form">
+        <h3 class="page-heading">Add Menu Items</h3>
+        <form action="{% url 'update_menu' r_id=menu_data.id %}" method="post" class="menu-add-form">
+            {% csrf_token %}
+
+            <label for="name">Item Name:</label>
+            <input type="text" id="name" name="name" required>
+
+            <label for="description">Description:</label>
+            <textarea id="description" name="description" required></textarea>
+
+            <label for="price">Price:</label>
+            <input type="number" id="price" name="price" step="0.01" required>
+
+            <label for="is_veg">Vegetarian:</label>
+            <input type="checkbox" id="is_veg" name="is_veg">
+
+            <label for="picture">Image URL:</label>
+            <input type="url" id="picture" name="picture">
+
+            <button type="submit" class="submit-button">Add Item</button>
+        </form>
+    </section>
+
+</body>
+</html>

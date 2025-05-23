@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Add New Restaurant</title>
+  {% load static %}
+  <link rel="stylesheet" href="{% static 'foodapp/add_restaurant.css' %}">
+</head>
+<body>
+  <div class="form-container">
+    <h2>Add New Restaurant</h2>
+    <form action="{% url 'add_restaurant' %}" method="post">
+      {% csrf_token %}
+      
+      <label for="name">Restaurant Name</label>
+      <input type="text" name="name" id="name" required>
+
+      <label for="url">Picture URL</label>
+      <input type="text" name="url" id="url" required>
+
+      <label for="cuisine">Cuisine</label>
+      <input type="text" name="cuisine" id="cuisine" required>
+
+      <label for="rating">Rating (0 - 5)</label>
+      <input type="number" name="rating" id="rating" min="0" max="5" step="0.5" required>
+
+      <button type="submit">Add Restaurant</button>
+    </form>
+  </div>
+</body>
+</html>
